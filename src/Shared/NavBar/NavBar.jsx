@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import { FaCarAlt } from 'react-icons/fa';
 
 const NavBar = () => {
 
@@ -15,7 +15,7 @@ const NavBar = () => {
                     title='ToyCarStore'
                     className='inline-flex items-center'
                 >
-
+                    <FaCarAlt className="w-12 h-12" />
                     <h2 className='ml-2 text-3xl font-bold tracking-wide  '>
                         ToyCar <span className="text-purple-600">Store</span>
                     </h2>
