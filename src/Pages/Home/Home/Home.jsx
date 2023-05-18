@@ -1,57 +1,14 @@
 import { FaShippingFast, FaDollarSign, FaHeadset } from "react-icons/fa";
+import LatestToys from "../LatestToys/LatestToys";
+import Banner from "../Banner/Banner";
 
 const Home = () => {
     return (
         <div>
-            <div className="carousel w-full">
-                <div id="slide1" className="carousel-item relative w-full">
-                    <img src="https://demoprestashop.aeipix.com/AX06/mixeat115/shop1/modules/aei_imageslider/views/img/sample-1.jpg" className="w-full" />
-
-                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide3" className="btn btn-circle">❮</a>
-
-                        <div className="absolute transform right-28 -top-20 ">
-                            <h1 className="   text-white font-bold text-5xl uppercase">Remote Car</h1>
-                            <p className="text-white mt-8">The model of a car refers to a specific version
-                                <br /> or variation of a vehicle within a particular make <br /> and denotes distinctive features and characteristic</p>
-                        </div>
-                        <a href="#slide2" className="btn btn-circle">❯</a>
-                    </div>
-                </div>
-                <div id="slide2" className="carousel-item relative w-full">
-                    <img src="https://demoprestashop.aeipix.com/AX06/mixeat115/shop1/modules/aei_imageslider/views/img/sample-3.jpg" className="w-full" />
-
-                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide1" className="btn btn-circle">❮</a>
-
-                        <div className="absolute transform right-28 -top-20 ">
-                            <h1 className="   text-white font-bold text-5xl uppercase">Battery Car</h1>
-                            <p className="text-white mt-8">The model of a car refers to a specific version
-                                <br /> or variation of a vehicle within a particular make <br /> and denotes distinctive features and characteristic</p>
-                        </div>
-                        <a href="#slide3" className="btn btn-circle">❯</a>
-                    </div>
-                </div>
-
-                <div id="slide3" className="carousel-item relative w-full">
-                    <img src="https://demoprestashop.aeipix.com/AX06/mixeat115/shop1/modules/aei_imageslider/views/img/sample-2.jpg" className="w-full" />
-
-                    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href="#slide2" className="btn btn-circle">❮</a>
-
-                        <div className="absolute transform left-28 -top-20 ">
-                            <h1 className=" text-white font-bold text-5xl uppercase">New Arrival</h1>
-                            <p className="text-white mt-8">The model of a car refers to a specific version
-                                <br /> or variation of a vehicle within a particular make <br /> and denotes distinctive features and characteristic</p>
-                        </div>
-
-                        <a href="#slide1" className="btn btn-circle">❯</a>
-
-                    </div>
-                </div>
-            </div>
+            <Banner/>
+            
             <div className="md:flex justify-center gap-6 my-12">
-                <div className="flex items-center gap-4 p-3 border-2 rounded-md border-gray-500">
+                <div className="flex items-center my-2 gap-4 p-3 border-2 rounded-md border-gray-500">
                     <div>
                         <FaShippingFast className="w-16 h-16" />
                     </div>
@@ -60,7 +17,7 @@ const Home = () => {
                     <p className="text-gray-400">All Order</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-4 p-3 border-2 rounded-md border-gray-500">
+                <div className="flex items-center my-2 gap-4 p-3 border-2 rounded-md border-gray-500">
                     <div>
                         <FaDollarSign className="w-16 h-16" />
                     </div>
@@ -69,7 +26,7 @@ const Home = () => {
                     <p className="text-gray-400">If You Are Unable</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-4 p-3 border-2 rounded-md border-gray-500">
+                <div className="flex items-center my-2 gap-4 p-3 border-2 rounded-md border-gray-500">
                     <div>
                         <FaHeadset className="w-16 h-16" />
                     </div>
@@ -79,6 +36,24 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            
+
+            <div className="md:flex gap-6">
+                <div className="my-4">
+                    <img className="relative rounded-xl" src="https://demoprestashop.aeipix.com/AX06/mixeat115/shop1/modules/aei_cmscategory/views/img/cat-1.jpg" alt="" />
+                    <h3 className="absolute font-bold text-5xl -mt-48 ml-80">Ride on care</h3>
+                </div>
+                <div className="my-4">
+                    <img className="relative rounded-xl" src="https://demoprestashop.aeipix.com/AX06/mixeat115/shop1/modules/aei_cmscategory/views/img/cat-2.jpg" alt="" />
+                    <h3 className="absolute font-bold text-5xl -mt-48 ml-80">Powerfull Moters</h3>
+                </div>
+            </div>
+
+            <div>
+                <LatestToys/>
+            </div>
+
+
         </div>
 
     );
