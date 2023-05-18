@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <div>
             <Banner/>
-            
+
             <div className="md:flex justify-center gap-6 my-12">
                 <div className="flex items-center my-2 gap-4 p-3 border-2 rounded-md border-gray-500">
                     <div>
@@ -49,9 +49,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div>
                 <LatestToys/>
-            </div>
 
 
         </div>
