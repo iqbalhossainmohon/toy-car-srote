@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaCarAlt } from 'react-icons/fa';
+import { AuthContext } from "../../Providers/AuthProviders";
 
 const NavBar = () => {
 
+    const { user, logOut } = useContext(AuthContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+
+            })
+            .catch(error => console.log(error))
+    }
 
     return (
         <div className='px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8'>
@@ -39,24 +49,7 @@ const NavBar = () => {
                             All-Toys
                         </NavLink>
                     </li>
-                    <li className='hover:text-purple-400 font-medium'>
-                        <NavLink
-                            to='/myToys'
-                            title='My-Toys'
-                            className={({ isActive }) => (isActive ? 'text-purple-600' : 'default')}
-                        >
-                            My-Toys
-                        </NavLink>
-                    </li>
-                    <li className='hover:text-purple-400 font-medium'>
-                        <NavLink
-                            to='/addAToys'
-                            title='Add-A-Toys'
-                            className={({ isActive }) => (isActive ? 'text-purple-600' : 'default')}
-                        >
-                            Add-A-Toys
-                        </NavLink>
-                    </li>
+
                     <li className='hover:text-purple-400 font-medium'>
                         <NavLink
                             to='/blog'
@@ -66,11 +59,36 @@ const NavBar = () => {
                             Blog
                         </NavLink>
                     </li>
+
+                    {user?.email ? <>
+                        <li className='hover:text-purple-400 font-medium list-none'>
+                            <NavLink
+                                to='/myToys'
+                                title='My-Toys'
+                                className={({ isActive }) => (isActive ? 'text-purple-600' : 'default')}
+                            >
+                                My-Toys
+                            </NavLink>
+                        </li>
+                        <li className='hover:text-purple-400 font-medium list-none'>
+                            <NavLink
+                                to='/addAToys'
+                                title='Add-A-Toys'
+                                className={({ isActive }) => (isActive ? 'text-purple-600' : 'default')}
+                            >
+                                Add-A-Toys
+                            </NavLink>
+                        </li>
+
+                        <button onClick={handleLogOut} className='bg-yellow-500 text-white font-bold w-24 h-12 rounded-md hover:bg-yellow-600'>Log Out</button>
+                    </> :
+                        <Link to='/login'>
+                            <button className='bg-purple-500 text-white font-bold w-24 h-12 rounded-md hover:bg-purple-600'>Login</button>
+                        </Link>}
+
                 </ul>
 
-                <Link to='/login'>
-                    <button className='bg-purple-500 text-white font-bold w-24 h-12 rounded-md hover:bg-purple-600'>Login</button>
-                </Link>
+
 
 
                 {/* ============>> Mobile Responsive <<============== */}
@@ -150,24 +168,6 @@ const NavBar = () => {
                                         </li>
                                         <li>
                                             <Link
-                                                to='/myToys'
-                                                title='My-Toys'
-                                                className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
-                                            >
-                                                My-Toys
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                to='/addAToys'
-                                                title='Add-A-Toys'
-                                                className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
-                                            >
-                                                Add-A-Toys
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
                                                 to='/blog'
                                                 title='Blog'
                                                 className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
@@ -175,6 +175,32 @@ const NavBar = () => {
                                                 Blog
                                             </Link>
                                         </li>
+
+                                        {user?.email ? <>
+                                            <li className='hover:text-purple-400 font-medium list-none'>
+                                                <NavLink
+                                                    to='/myToys'
+                                                    title='My-Toys'
+                                                    className={({ isActive }) => (isActive ? 'text-purple-600' : 'default')}
+                                                >
+                                                    My-Toys
+                                                </NavLink>
+                                            </li>
+                                            <li className='hover:text-purple-400 font-medium list-none'>
+                                                <NavLink
+                                                    to='/addAToys'
+                                                    title='Add-A-Toys'
+                                                    className={({ isActive }) => (isActive ? 'text-purple-600' : 'default')}
+                                                >
+                                                    Add-A-Toys
+                                                </NavLink>
+                                            </li>
+
+                                            <button onClick={handleLogOut} className='bg-yellow-500 text-white font-bold w-24 h-12 rounded-md hover:bg-yellow-600'>Log Out</button>
+                                        </> :
+                                            <Link to='/login'>
+                                                <button className='bg-purple-500 text-white font-bold w-24 h-12 rounded-md hover:bg-purple-600'>Login</button>
+                                            </Link>}
                                     </ul>
                                 </nav>
                             </div>
