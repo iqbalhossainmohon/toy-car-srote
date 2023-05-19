@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
-import AllToys from "../AllToys/AllToys";
+import { Link } from "react-router-dom";
 
 const MyToys = () => {
 
@@ -16,21 +16,21 @@ const MyToys = () => {
             })
     }, [user]);
 
-    const handleDelete =(id)=>{
+    const handleDelete = (id) => {
         const proceed = confirm('Are you sure you want to delete');
-        if(proceed){
+        if (proceed) {
             fetch(`http://localhost:5000/allToys/${id}`, {
                 method: "DELETE"
             })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if(data.deletedCount){
-                    alert('Deleted Successful');
-                    const remaining = myToys.filter(toys => toys._id !== id);
-                    setMyToys(remaining)
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount) {
+                        alert('Deleted Successful');
+                        const remaining = myToys.filter(toys => toys._id !== id);
+                        setMyToys(remaining)
+                    }
+                })
         }
     }
 
@@ -60,8 +60,12 @@ const MyToys = () => {
                                 <td>{toys.category}</td>
                                 <td>{toys.price}</td>
                                 <td>{toys.quantity}</td>
-                                <td><button className="btn btn-info">Update</button></td>
-                                <td><button onClick={()=>handleDelete(toys._id)} className="btn btn-warning">Delete</button></td>
+                                <td>
+                                    <Link to={`/updateToys/${toys._id}`}>
+                                        <button className="btn btn-info">Update</button>
+                                    </Link>
+                                </td>
+                                <td><button onClick={() => handleDelete(toys._id)} className="btn btn-warning">Delete</button></td>
                             </tr>
                         )
                     }
