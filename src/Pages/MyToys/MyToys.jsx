@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProviders";
 
-const AllToys = () => {
+const MyToys = () => {
 
-    const [allToys, setAllToys] = useState([]);
+    const {user} = useContext(AuthContext);
+    const [myToys, setMyToys] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/allToys')
-            .then(res => res.json())
-            .then(result => {
-                setAllToys(result);
-                console.log(result);
-            })
-    }, [])
+    useEffect(()=>{
+        fetch(`http://localhost:5000/allToys/${user?.email}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            setMyToys(data)
+        })
+    },[user]);
 
     return (
         <div>
-            <h1 className="text-4xl font-bold text-center my-4">All <span className="text-purple-500">Toys</span></h1>
+            <h1>My Toys</h1>
 
             <table className="table w-full">
                 <thead>
@@ -26,12 +27,13 @@ const AllToys = () => {
                         <th>Sub-Category</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                        <th>View Details</th>
+                        <th>Update</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        allToys.map((toys, index) =>
+                        myToys.map((toys, index) =>
                             <tr key={toys._id}>
 
                                 <th>{index + 1}</th>
@@ -39,10 +41,8 @@ const AllToys = () => {
                                 <td>{toys.category}</td>
                                 <td>{toys.price}</td>
                                 <td>{toys.quantity}</td>
-                                <td><Link to={`/allToys/${toys._id}`}>
-                                    <button className="btn btn-info">Details</button>
-                                    </Link>
-                                    </td>
+                                <td><button className="btn btn-info">Update</button></td>
+                                <td><button className="btn btn-warning">Delete</button></td>
                             </tr>
                         )
                     }
@@ -52,4 +52,4 @@ const AllToys = () => {
     );
 };
 
-export default AllToys;
+export default MyToys;
