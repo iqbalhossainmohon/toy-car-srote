@@ -17,6 +17,9 @@ const AddAToys = () => {
         .then(res => res.json())
         .then(result => {
             console.log(result);
+            if(result.insertedId){
+                alert('Toys Add Successful')
+            }
         })
         console.log(data)
     };
