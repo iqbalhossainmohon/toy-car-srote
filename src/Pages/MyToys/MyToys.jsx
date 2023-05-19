@@ -1,19 +1,38 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
+import AllToys from "../AllToys/AllToys";
 
 const MyToys = () => {
 
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [myToys, setMyToys] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch(`http://localhost:5000/allToys/${user?.email}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            setMyToys(data)
-        })
-    },[user]);
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setMyToys(data)
+            })
+    }, [user]);
+
+    const handleDelete =(id)=>{
+        const proceed = confirm('Are you sure you want to delete');
+        if(proceed){
+            fetch(`http://localhost:5000/allToys/${id}`, {
+                method: "DELETE"
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if(data.deletedCount){
+                    alert('Deleted Successful');
+                    const remaining = myToys.filter(toys => toys._id !== id);
+                    setMyToys(remaining)
+                }
+            })
+        }
+    }
 
     return (
         <div>
@@ -42,7 +61,7 @@ const MyToys = () => {
                                 <td>{toys.price}</td>
                                 <td>{toys.quantity}</td>
                                 <td><button className="btn btn-info">Update</button></td>
-                                <td><button className="btn btn-warning">Delete</button></td>
+                                <td><button onClick={()=>handleDelete(toys._id)} className="btn btn-warning">Delete</button></td>
                             </tr>
                         )
                     }
