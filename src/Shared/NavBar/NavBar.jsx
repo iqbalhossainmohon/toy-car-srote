@@ -148,32 +148,32 @@ const NavBar = () => {
                                 </div>
                                 <nav>
                                     <ul className='space-y-4'>
-                                        <li>
-                                            <Link
+                                        <li className='hover:text-purple-400 font-medium list-none'>
+                                            <NavLink
                                                 to='/'
                                                 title='Home'
-                                                className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                                className={({ isActive }) => (isActive ? 'text-purple-600' : 'default')}
                                             >
                                                 Home
-                                            </Link>
+                                            </NavLink>
                                         </li>
-                                        <li>
-                                            <Link
+                                        <li className='hover:text-purple-400 font-medium list-none'>
+                                            <NavLink
                                                 to='/allToys'
                                                 title='All-Toys'
-                                                className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                                className={({ isActive }) => (isActive ? 'text-purple-600' : 'default')}
                                             >
                                                 All-Toys
-                                            </Link>
+                                            </NavLink>
                                         </li>
-                                        <li>
-                                            <Link
+                                        <li className='hover:text-purple-400 font-medium list-none'>
+                                            <NavLink
                                                 to='/blog'
                                                 title='Blog'
-                                                className='font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400'
+                                                className={({ isActive }) => (isActive ? 'text-purple-600' : 'default')}
                                             >
                                                 Blog
-                                            </Link>
+                                            </NavLink>
                                         </li>
 
                                         {user?.email ? <>
