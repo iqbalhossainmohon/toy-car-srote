@@ -36,7 +36,7 @@ const MyToys = () => {
 
     return (
         <div>
-            <h1>My Toys</h1>
+            <h1 className="text-center text-5xl font-bold my-4">My <span className="text-purple-500">Toys</span></h1>
 
             <table className="table w-full">
                 <thead>

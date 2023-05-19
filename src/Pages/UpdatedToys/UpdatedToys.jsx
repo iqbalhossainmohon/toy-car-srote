@@ -8,13 +8,23 @@ const UpdatedToys = () => {
     const { user } = useContext(AuthContext);
     const toys = useLoaderData();
 
-    const handleUpdate = () => {
+    const handleUpdate = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const name = form.name.value;
+        const category = form.category.value;
+        const price = form.price.value;
+        const quantity = form.quantity.value;
+        const result = {email, name, category, price, quantity};
+        console.log(result);
+
         fetch(`http://localhost:5000/allToys/${toys._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify()
+            body: JSON.stringify(result)
         })
             .then(res => res.json())
             .then(data => {
