@@ -8,7 +8,7 @@ const AddAToys = () => {
 
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        fetch('http://localhost:5000/addToys', {
+        fetch('https://toy-car-store-server.vercel.app/addToys', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
